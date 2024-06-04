@@ -1,7 +1,5 @@
-import preprocessing
-
-# Assigning the featurs as X and trarget as y
-
+import pandas as pd
+from sklearn.model_selection import train_test_split
 
 label_data = pd.read_csv('cleaned_data.csv')
 

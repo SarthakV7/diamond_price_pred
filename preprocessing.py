@@ -34,7 +34,7 @@ data = data[(data["x"]<30)]
 data = data[(data["y"]<30)]
 data = data[(data["z"]<30)&(data["z"]>2)]
 
-ax=sns.pairplot(data, hue= "cut")
+# ax=sns.pairplot(data, hue= "cut")
 
 # Get list of categorical variables
 s = (data.dtypes =="object")
