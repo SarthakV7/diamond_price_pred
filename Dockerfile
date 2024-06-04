@@ -24,3 +24,6 @@ RUN python training.py
 
 # Run the testing script
 CMD ["python", "testing.py"]
+
+# Exposing the port
+EXPOSE 80
