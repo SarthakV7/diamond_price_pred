@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-   name: mrdevops
+   name: diamond_prediction
 spec:
    replicas: 2
    selector:      # tells the controller which pods to watch/belong to
     matchLabels:
-     app: mrdevops
+     app: diamond_prediction
    template:
       metadata:
         labels:
-          app: mrdevops
+          app: diamond_prediction
       spec:
        containers:
-        - name: mrdevops
-          image: vikashashoke/pipeline-demo
+        - name: diamond_prediction
+          image: sarthakvajpayee/pipeline_diamond
           imagePullPolicy: Always
           ports:
           - containerPort: 80
