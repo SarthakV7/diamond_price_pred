@@ -1,14 +1,14 @@
 kind: Service                             
 apiVersion: v1
 metadata:
-  name: diamond_prediction
+  name: diamond-prediction
   labels:
-    app: diamond_prediction
+    app: diamond-prediction
 spec:
   ports:
     - port: 8080                               
       targetPort: 80                    
       nodePort: 31200
   selector:
-    app: diamond_prediction          
+    app: diamond-prediction          
   type: LoadBalancer                   
