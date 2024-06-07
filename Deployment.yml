@@ -1,21 +1,41 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-   name: diamond-prediction
+  name: diamond-prediction
 spec:
-   replicas: 2
-   selector:      # tells the controller which pods to watch/belong to
+  replicas: 2
+  selector:
     matchLabels:
-     app: diamond-prediction
-   template:
-      metadata:
-        labels:
-          app: diamond-prediction
-      spec:
-       containers:
-        - name: diamond-prediction
-          image: sarthakvajpayee/pipeline_diamond
-          imagePullPolicy: Always
-          ports:
-          - containerPort: 80
-          
+      app: diamond-prediction
+  template:
+    metadata:
+      labels:
+        app: diamond-prediction
+    spec:
+      containers:
+      - name: diamond-prediction
+        image: sarthakvajpayee/pipeline_diamond
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8501
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8501
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8501
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+          requests:
+            cpu: 100m
+            memory: 745Mi
