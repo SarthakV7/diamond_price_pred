@@ -26,4 +26,4 @@ RUN python training.py
 CMD ["streamlit", "run", "testing.py", "--server.port=8501", "--server.address=0.0.0.0"]
 
 # Exposing the port
-EXPOSE 80
+EXPOSE 80 8501
