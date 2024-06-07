@@ -3,8 +3,9 @@ from sklearn.model_selection import train_test_split
 
 label_data = pd.read_csv('cleaned_data.csv')
 
-X = label_data.drop(["price"],axis =1)
+X = label_data.drop(["price"], axis =1)
 y = label_data["price"]
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=7)
 
 X_train.to_csv('X_train.csv', index=False)

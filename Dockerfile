@@ -23,7 +23,7 @@ RUN python train_test_splitting.py
 RUN python training.py
 
 # Run the testing script
-CMD ["python", "testing.py"]
+CMD ["streamlit run", "testing.py"]
 
 # Exposing the port
 EXPOSE 80

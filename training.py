@@ -1,47 +1,34 @@
 import pandas as pd 
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
-from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestRegressor
+import joblib
 
 X_train = pd.read_csv('X_train.csv')
-X_test = pd.read_csv('X_test.csv')
 y_train = pd.read_csv('y_train.csv').values.ravel()
-y_test = pd.read_csv('y_test.csv').values.ravel()
 
-# Building pipelins of standard scaler and model for varios regressors.
+numeric_features = ['carat', 'depth', 'table', 'x', 'y', 'z']
+categorical_features = ['cut', 'color', 'clarity']
 
-# pipeline_lr=Pipeline([("scalar1",StandardScaler()),
-#                      ("lr_classifier",LinearRegression())])
+numeric_transformer = Pipeline(steps=[
+    ('scaler', StandardScaler())])
 
-pipeline_dt=Pipeline([("scalar2",StandardScaler()),
-                     ("dt_classifier",DecisionTreeRegressor())])
+categorical_transformer = Pipeline(steps=[
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))])
 
-pipeline_rf=Pipeline([("scalar3",StandardScaler()),
-                     ("rf_classifier",RandomForestRegressor())])
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)])
 
-pipeline_kn=Pipeline([("scalar4",StandardScaler()),
-                     ("rf_classifier",KNeighborsRegressor())])
+pipeline_rf = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('regressor', RandomForestRegressor())])
 
-# pipeline_xgb=Pipeline([("scalar5",StandardScaler()),
-#                      ("rf_classifier",XGBRegressor())])
+pipeline_rf.fit(X_train, y_train)
 
-# List of all the pipelines
-# pipelines = [pipeline_lr, pipeline_dt, pipeline_rf, pipeline_kn, pipeline_xgb]
-pipelines = [pipeline_dt, pipeline_rf, pipeline_kn]
-
-# Dictionary of pipelines and model types for ease of reference
-pipe_dict = {0: "DecisionTree", 1: "RandomForest", 2: "KNeighbors"}
-
-# Fit the pipelines
-for pipe in pipelines:
-    pipe.fit(X_train, y_train)
-
-cv_results_rms = []
-for i, model in enumerate(pipelines):
-    cv_score = cross_val_score(model, X_train, y_train, scoring="neg_root_mean_squared_error", cv=3)
-    cv_results_rms.append(cv_score)
-    print("%s: %f " % (pipe_dict[i], cv_score.mean()))
+joblib.dump(pipeline_rf, 'random_forest_pipeline.pkl')
