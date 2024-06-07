@@ -22,8 +22,8 @@ RUN python train_test_splitting.py
 # Run the training script
 RUN python training.py
 
-# Run the testing script
-CMD ["streamlit", "run", "testing.py", "--server.port=8501", "--server.address=0.0.0.0"]
-
 # Exposing the port
 EXPOSE 80 8501
+
+# Run the testing script
+CMD ["streamlit", "run", "testing.py", "--server.port=8501", "--server.address=0.0.0.0"]
