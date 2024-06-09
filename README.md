@@ -1,6 +1,3 @@
-Sure, here is a detailed README markdown for your project:
-
-```markdown
 # Diamond Price Prediction
 
 This project aims to predict the price of diamonds based on various features such as carat, cut, color, clarity, and dimensions. The application is built using Python and several machine learning libraries. It employs an XGBoost model and is deployed using a comprehensive CI/CD pipeline involving Docker, Jenkins, Ansible, Minikube, and Streamlit.
@@ -123,6 +120,5 @@ Contributions are welcome! Please fork the repository and create a pull request.
 ## License
 
 This project is licensed under the MIT License.
-```
 
 Feel free to customize it further to better suit your project's specifics and requirements.
