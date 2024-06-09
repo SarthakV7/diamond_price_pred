@@ -1,41 +1,41 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: diamond-prediction
+  name: diamond-prediction  # The name of the deployment
 spec:
-  replicas: 2
+  replicas: 2  # Specifies that two replicas of the pod should be running
   selector:
     matchLabels:
-      app: diamond-prediction
+      app: diamond-prediction  # Labels used to select the pods that belong to this deployment
   template:
     metadata:
       labels:
-        app: diamond-prediction
+        app: diamond-prediction  # Labels for the pod template
     spec:
       containers:
-      - name: diamond-prediction
-        image: sarthakvajpayee/pipeline_diamond
-        imagePullPolicy: Always
+      - name: diamond-prediction  # Name of the container
+        image: sarthakvajpayee/pipeline_diamond  # Docker image to use
+        imagePullPolicy: Always  # Specifies that the image should always be pulled
         ports:
-        - containerPort: 8501
-        livenessProbe:
+        - containerPort: 8501  # Ports that the container will expose
+        livenessProbe:  # HTTP probe to check if the container is alive
           httpGet:
-            path: /
-            port: 8501
-            scheme: HTTP
-          initialDelaySeconds: 30
-          timeoutSeconds: 1
-        readinessProbe:
+            path: /  # Path to access for the liveness probe
+            port: 8501  # Port to access for the liveness probe
+            scheme: HTTP  # Scheme to use for the liveness probe
+          initialDelaySeconds: 30  # Initial delay before starting the liveness probe
+          timeoutSeconds: 1  # Timeout for the liveness probe
+        readinessProbe:  # HTTP probe to check if the container is ready to serve traffic
           httpGet:
-            path: /
-            port: 8501
-            scheme: HTTP
-          initialDelaySeconds: 30
-          timeoutSeconds: 1
-        resources:
+            path: /  # Path to access for the readiness probe
+            port: 8501  # Port to access for the readiness probe
+            scheme: HTTP  # Scheme to use for the readiness probe
+          initialDelaySeconds: 30  # Initial delay before starting the readiness probe
+          timeoutSeconds: 1  # Timeout for the readiness probe
+        resources:  # Resource requests and limits
           limits:
-            cpu: 1
-            memory: 2Gi
+            cpu: 1  # Maximum amount of CPU the container can use
+            memory: 2Gi  # Maximum amount of memory the container can use
           requests:
-            cpu: 100m
-            memory: 745Mi
+            cpu: 100m  # Minimum amount of CPU the container needs
+            memory: 745Mi  # Minimum amount of memory the container needs

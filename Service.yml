@@ -1,14 +1,14 @@
-kind: Service                             
+kind: Service
 apiVersion: v1
 metadata:
-  name: diamond-prediction
+  name: diamond-prediction  # The name of the service
   labels:
-    app: diamond-prediction
+    app: diamond-prediction  # Labels used to identify the service
 spec:
   ports:
-    - port: 80                               
-      targetPort: 8501                    
-      nodePort: 31200
+    - port: 80  # The port that the service will expose
+      targetPort: 8501  # The port on the container that the service will forward traffic to
+      nodePort: 31200  # The port on each node on which this service is exposed when type is NodePort or LoadBalancer
   selector:
-    app: diamond-prediction          
-  type: LoadBalancer
+    app: diamond-prediction  # The label selector to identify which pods this service applies to
+  type: LoadBalancer  # The type of the service, which creates an external load balancer
