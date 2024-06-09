@@ -93,15 +93,43 @@ The Diamond Price Prediction application allows users to predict the price of a 
 
 ## CI/CD Pipeline
 
-### Continuous Integration (CI)
+### Overview
 
-- **Code Integration:** Code is pushed to the repository, triggering Jenkins to run tests.
-- **Build Process:** The application is built using Docker to ensure a consistent environment.
+The CI/CD pipeline for this project automates the process of testing, building, and deploying the diamond price prediction application. The pipeline is managed using Jenkins and involves multiple stages executed across three different servers.
 
-### Continuous Deployment (CD)
+### Stages
 
-- **Deployment Automation:** Jenkins deploys the application to a Minikube cluster using Ansible.
-- **Application Launch:** The deployed application is accessible via a web interface.
+1. **Git Checkout:**
+
+   - **Description:** The pipeline starts by checking out the project repository from GitHub to ensure the latest code is used.
+
+2. **Show Downloaded Files:**
+
+   - **Description:** The pipeline lists the files downloaded from the GitHub repository to verify that the correct files have been retrieved.
+
+3. **SSH to Ansible Server and Copy Files:**
+
+   - **Description:** The pipeline connects to the Ansible server and copies the necessary files from the Jenkins server to the Ansible server. This is to prepare for building the Docker image.
+
+4. **Docker Image Building:**
+
+   - **Description:** On the Ansible server, the pipeline builds a Docker image using the copied files. This image contains the application and its dependencies.
+
+5. **Docker Image Tagging:**
+
+   - **Description:** The built Docker image is tagged with a specific version and a latest tag to ensure version control and easy access.
+
+6. **Push Docker Images to DockerHub:**
+
+   - **Description:** The tagged Docker images are pushed to DockerHub, a container registry, to make them accessible for deployment.
+
+7. **Copying Files to Kubernetes Server:**
+
+   - **Description:** The pipeline then copies the necessary deployment files from the Jenkins server to the Kubernetes server, preparing for deployment in the Minikube cluster.
+
+8. **Kubernetes Deployment Using Ansible:**
+
+   - **Description:** Finally, the pipeline uses Ansible to deploy the application to the Kubernetes cluster, ensuring the application is up and running in the Minikube environment.
 
 ## Model Evaluation
 
@@ -120,5 +148,3 @@ Contributions are welcome! Please fork the repository and create a pull request.
 ## License
 
 This project is licensed under the MIT License.
-
-Feel free to customize it further to better suit your project's specifics and requirements.
