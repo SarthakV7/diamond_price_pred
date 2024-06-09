@@ -6,8 +6,8 @@ from sklearn.ensemble import RandomForestRegressor
 import joblib
 
 # Load the training data from CSV files
-X_train = pd.read_csv('X_train.csv')
-y_train = pd.read_csv('y_train.csv').values.ravel()
+X_train = pd.read_csv('./data_models/X_train.csv')
+y_train = pd.read_csv('./data_models/y_train.csv').values.ravel()
 
 # Define the numeric and categorical features
 numeric_features = ['carat', 'depth', 'table', 'x', 'y', 'z']
@@ -36,4 +36,4 @@ pipeline_rf = Pipeline(steps=[
 pipeline_rf.fit(X_train, y_train)
 
 # Save the trained pipeline to a file
-joblib.dump(pipeline_rf, 'random_forest_pipeline.pkl')
+joblib.dump(pipeline_rf, './data_models/random_forest_pipeline.pkl')

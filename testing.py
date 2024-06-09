@@ -5,13 +5,13 @@ from sklearn import metrics
 import joblib
 
 # Load the training and testing data
-X_train = pd.read_csv('X_train.csv')
-X_test = pd.read_csv('X_test.csv')
-y_train = pd.read_csv('y_train.csv').values.ravel()
-y_test = pd.read_csv('y_test.csv').values.ravel()
+X_train = pd.read_csv('./data_models/X_train.csv')
+X_test = pd.read_csv('./data_models/X_test.csv')
+y_train = pd.read_csv('./data_models/y_train.csv').values.ravel()
+y_test = pd.read_csv('./data_models/y_test.csv').values.ravel()
 
 # Load pre-trained model
-pipeline_rf = joblib.load('random_forest_pipeline.pkl')
+pipeline_rf = joblib.load('./data_models/random_forest_pipeline.pkl')
 
 # Make predictions on the test data
 pred = pipeline_rf.predict(X_test)

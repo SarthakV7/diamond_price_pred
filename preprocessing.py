@@ -2,7 +2,7 @@ import pandas as pd
 
 # Load and preprocess the dataset
 # Load the diamonds dataset from a CSV file
-data = pd.read_csv("./diamonds.csv")
+data = pd.read_csv("./data_models/diamonds.csv")
 
 # Drop the first column as it seems to be an index
 data = data.drop(["Unnamed: 0"], axis=1)
@@ -20,4 +20,4 @@ data = data[data["y"] < 30]
 data = data[(data["z"] < 30) & (data["z"] > 2)]
 
 # Save the cleaned data to a new CSV file
-data.to_csv('cleaned_data.csv', index=False)
+data.to_csv('./data_models/cleaned_data.csv', index=False)
