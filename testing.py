@@ -34,6 +34,8 @@ def predict_price(features):
 # Streamlit App
 st.title("Diamond Price Prediction")
 
+st.image('./data_models/diamond.png')
+
 # Sidebar for input features
 st.sidebar.header("Enter the diamond features below:")
 
@@ -70,4 +72,9 @@ if st.sidebar.button("Predict"):
     features_values = np.array(list(features.values())).reshape(1, -1)[0]
     prediction = predict_price(features_values)
     
-    st.subheader(f"The predicted price of the diamond is: ${prediction}")
+    st.subheader(f"The predicted price of the diamond is:")
+    st.subheader(f"${prediction}")
+
+st.sidebar.title('About')
+st.sidebar.info('This app is for diamond price prediction. \nFind the project at: https://github.com/SarthakV7/diamond_price_pred/')
+st.sidebar.info('Developed by Sarthak Vajpayee. \nLinkedin https://www.linkedin.com/in/sarthak-vajpayee/')
