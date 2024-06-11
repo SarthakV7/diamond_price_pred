@@ -2,6 +2,8 @@
 
 This project aims to predict the price of diamonds based on various features such as carat, cut, color, clarity, and dimensions. The application is built using Python and several machine learning libraries. It employs an XGBoost model and is deployed using a comprehensive CI/CD pipeline involving Docker, Jenkins, Ansible, Minikube, and Streamlit.
 
+![alt text](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*N7-8IEQeJ6pdgmCzVPuTZQ.png)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -43,6 +45,8 @@ The Diamond Price Prediction application allows users to predict the price of a 
 - Minikube
 - Jenkins
 - Ansible
+
+![alt text](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*XdMR6DfjwiNwnw9aCzc3Sg.png)
 
 ### Steps
 
@@ -130,6 +134,8 @@ The CI/CD pipeline for this project automates the process of testing, building, 
 8. **Kubernetes Deployment Using Ansible:**
 
    - **Description:** Finally, the pipeline uses Ansible to deploy the application to the Kubernetes cluster, ensuring the application is up and running in the Minikube environment.
+
+![alt text](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*nrZhiuGq4Sc19uUUA8Amwg.png)
 
 ## Model Evaluation
 
